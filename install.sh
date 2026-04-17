@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-RELEASE_URL="https://github.com/silentg33k/chalkboard-installer/raw/main/releases/chalkboard-v1.0.0-rc1-tokenfix.zip"
+RELEASE_URL="https://github.com/silentg33k/chalkboard-installer/raw/main/releases/chalkboard-v1.0.0-rc1-xauthfix.zip"
 STAGE="/home/pi/chalkboard-upload"
-ARCHIVE="/tmp/chalkboard-v1.0.0-rc1-tokenfix.zip"
+ARCHIVE="/tmp/chalkboard-v1.0.0-rc1-xauthfix.zip"
 
 if [ "$(id -u)" -eq 0 ]; then
   echo "Run this installer as user pi, not as root." >&2
