@@ -2,7 +2,7 @@
 
 Public installer for Chalkboard RC1.
 
-This repository contains only the public installer bootstrap and packaged RC1 release artifact. The main development repository can remain private.
+This repository contains only the public installer bootstrap and packaged RC1 release artifact. The main development repository remains private.
 
 ## Fresh Raspberry Pi Install
 
