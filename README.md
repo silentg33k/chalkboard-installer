@@ -1,73 +1,114 @@
-# Chalkboard Installer
+# Chalkboard — Self-Hosted Raspberry Pi Wall Display
 
-Public installer for Chalkboard RC1.
+**A local-only kiosk display that installs in under 10 minutes and runs with no cloud, no account, and no subscription.**
 
-This repository contains only the public installer bootstrap and packaged RC1 release artifact. The main development repository remains private.
+---
 
-## Fresh Raspberry Pi Install
+## What this is
 
-Start with a freshly installed Raspberry Pi OS system.
+Chalkboard turns a Raspberry Pi into a wall-mounted dashboard that:
 
-Requirements:
+- boots directly into a fullscreen display
+- runs entirely on your local network
+- is controlled from a browser
+- stores all data locally
 
-- Raspberry Pi user is named `pi`
-- SSH or local terminal access works
-- Pi has internet access
+> No cloud services. No vendor lock-in.
 
-Log into the Pi as `pi` and run:
+---
 
-```bash
+## Install (fresh Pi → running system)
+
+Start with a fresh Raspberry Pi OS install.
+
+### Requirements
+
+- User is named pi
+- SSH or local terminal access
+- Internet connection
+
+Run:
+
+```
 curl -fsSL https://raw.githubusercontent.com/silentg33k/chalkboard-installer/main/install.sh | bash
 ```
 
-The installer will:
+That’s it.
 
-- install download prerequisites
-- download the Chalkboard RC1 package
-- stage files under `/home/pi/chalkboard-upload`
-- run the full Pi-side installer
-- install packages and system configuration
-- deploy Chalkboard to `/var/www/html/chalkboard`
-- configure nginx, PHP-FPM, Chromium kiosk mode, cron, sudoers, permissions, and helpers
-- reboot once at the end
+The system will install, configure itself, and reboot once.
 
-## After Reboot
+**Typical install time: ~8 minutes from command to running display**
 
-Try:
+---
 
-```text
+## What the installer does
+
+- installs required packages
+- downloads the Chalkboard RC1 release
+- stages files under /home/pi/chalkboard-upload
+- deploys to /var/www/html/chalkboard
+- configures:
+    - nginx
+    - PHP-FPM
+    - Chromium kiosk mode
+    - X11 / Openbox
+    - cron jobs
+    - sudoers + permissions
+- performs a full system setup
+- reboots automatically
+
+---
+
+## After reboot
+
+Open from another device:
+
+```
 https://chalkboard.local/
 https://chalkboard.local/admin
 https://chalkboard.local/settings
 ```
 
-If `chalkboard.local` does not resolve, use the Pi IP:
+If .local doesn’t resolve:
 
-```text
+```
 https://<PI_IP>/chalkboard/
 https://<PI_IP>/admin
 https://<PI_IP>/settings
 ```
 
-A browser certificate warning is expected because Chalkboard uses a local self-signed certificate.
+A certificate warning is expected (self-signed HTTPS).
 
-## Install Report
+---
 
-After reboot, SSH into the Pi and run:
+## System behavior
 
-```bash
+- display runs immediately after boot
+- admin interface is available on the network
+- additional features (weather, calendar, etc.) can be configured later
+
+> The system is usable before any configuration.
+
+---
+
+## Install report
+
+After install:
+
+```
 less /home/pi/chalkboard-install-report.txt
 chalkhealth
 ```
 
-The root-owned install log is:
+Root log:
 
-```bash
+```
 sudo less /var/log/chalkboard-install-report.txt
 ```
 
+---
+
 ## Important
 
-This RC1 installer expects the Pi user to be named `pi`.
-
-Do not run the installer as root.
+- User must be named pi
+- Do not run installer as root
