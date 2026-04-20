@@ -17,7 +17,7 @@ Chalkboard turns a Raspberry Pi into a wall-mounted dashboard that:
 
 ---
 
-## Install (fresh Pi → running system)
+## Install (fresh Pi running system)
 
 Start with a fresh Raspberry Pi OS install.
 
